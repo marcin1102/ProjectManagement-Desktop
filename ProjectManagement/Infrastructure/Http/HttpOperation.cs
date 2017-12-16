@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure
+namespace Infrastructure.Http
 {
-    public class Class1
+    public enum HttpOperationType
     {
+        POST, PUT, PATCH, GET, DELETE
     }
 }
