@@ -5,13 +5,13 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Http
+namespace ProjectManagement.Infrastructure.Http
 {
     public static class HttpClientProvider
     {
         internal static HttpClient HttpClient = new HttpClient()
         {
-            BaseAddress = new Uri("http://localhost/api")
+            BaseAddress = new Uri("http://localhost:5000/")
         };
     }
 }

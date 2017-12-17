@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Http
+namespace ProjectManagement.Infrastructure.Http
 {
     public enum HttpOperationType
     {
