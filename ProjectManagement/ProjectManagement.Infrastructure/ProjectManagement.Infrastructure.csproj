@@ -36,6 +36,7 @@
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework" />
     <Reference Include="ProjectManagement.Infrastructure.Primitives, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ProjectManagement.Infrastructure.Primitives.1.0.0\lib\netstandard2.0\ProjectManagement.Infrastructure.Primitives.dll</HintPath>
     </Reference>
@@ -55,6 +56,7 @@
   <ItemGroup>
     <Compile Include="Http\HttpClientProvider.cs" />
     <Compile Include="Http\HttpOperation.cs" />
+    <Compile Include="Http\ResponseExtensions.cs" />
     <Compile Include="Message\CommandQueryDispatcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="String\StringExtensions.cs" />

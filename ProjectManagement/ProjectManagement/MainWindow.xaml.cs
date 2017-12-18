@@ -39,21 +39,7 @@ namespace ProjectManagement
             }
             else
             {
-                //var responseContent = response.ResponseContent.Remove(0).Remove(response.ResponseContent.Count() - 2).RemoveBackslashesFromJson();
-                try
-                {
-                    var jArray = JArray.Parse(response.ResponseContent);
-                    MessageBox.Show($"Login failed! \n {string.Join("\n", jArray.Children()["errorMessage"].Values<string>())}");
-                }
-                catch (System.Exception ex)
-                {
-                    var jsonContent = JObject.Parse(response.ResponseContent);
-                    var properties = jsonContent.Properties().Where(x => x.Name == "errorMessage");
-                    if (properties.Any())
-                        MessageBox.Show($"Login failed! \n {string.Join("\n", properties.Select(x => x.Value))}");
-                    else
-                        MessageBox.Show($"Login failed! \n {string.Join("\n", jsonContent.Properties().Select(x => x.Value))}");
-                }                
+                ResponseExtensions.ToMessageBox(response.ResponseContent);
             }
         }
 
