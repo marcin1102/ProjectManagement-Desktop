@@ -24,10 +24,10 @@ namespace ProjectManagement.Projects
     /// </summary>
     public partial class ProjectsPage : Page
     {
-        private ProjectsWindow projectsWindow;
+        private MainWindow projectsWindow;
         private IEnumerable<ProjectListItem> projects;
 
-        public ProjectsPage(ProjectsWindow projectsWindow)
+        public ProjectsPage(MainWindow projectsWindow)
         {
             this.projectsWindow = projectsWindow;
             InitializeComponent();
@@ -43,7 +43,7 @@ namespace ProjectManagement.Projects
             else
             {
                 projects = response.ResponseContent;
-                ProjectsDataGrid.DataContext = projects.Select(x => x.Name);
+                ProjectsDataGrid.ItemsSource = projects;
             }            
         }
 
@@ -54,12 +54,20 @@ namespace ProjectManagement.Projects
 
         private void CreateProjectButton_Click(object sender, RoutedEventArgs e)
         {
-            projectsWindow.Content = projectsWindow.AddProjectPage;
+            projectsWindow.MainFrame.Content = projectsWindow.AddProjectPage;
         }
 
         private void ReloadProjectsButton_Click(object sender, RoutedEventArgs e)
         {
             LoadProjects();
+        }
+
+        private async void LogOutButton_Click(object sender, RoutedEventArgs e)
+        {
+            projectsWindow.CommandQueryDispatcher.RemoveAccessToken();
+            new LoginWindow().Show();
+            projectsWindow.Visibility = Visibility.Hidden;
+            projectsWindow.Close();
         }
     }
 }

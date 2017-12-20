@@ -11,8 +11,8 @@ namespace ProjectManagement.Infrastructure.Message
 {
     public class CommandQueryDispatcher
     {
-        private string accessToken;
-        
+        private string accessTokenHeaderName = "AccessToken";
+
         public async Task<(HttpStatusCode StatusCode, string ResponseContent)> SendAsync<TCommand>(TCommand command, string uri, HttpOperationType httpOperationType)
             where TCommand : class, ICommand
         {
@@ -40,8 +40,7 @@ namespace ProjectManagement.Infrastructure.Message
             var responseContent = await response.Content.ReadAsStringAsync();
             if (uri.Contains("login"))
             {
-                accessToken = responseContent.Replace("token: ", "");
-                HttpClientProvider.HttpClient.DefaultRequestHeaders.Add("AccessToken", accessToken);
+                HttpClientProvider.HttpClient.DefaultRequestHeaders.Add(accessTokenHeaderName, responseContent.Replace("token: ", ""));
             }
 
             return (response.StatusCode, responseContent);
@@ -51,6 +50,9 @@ namespace ProjectManagement.Infrastructure.Message
             where TResponse : class
         {
             var response = await HttpClientProvider.HttpClient.GetAsync(uri);
+            if(!response.IsSuccessStatusCode)
+                return (response.StatusCode, null);
+
             var responseBody = JsonConvert.DeserializeObject<TResponse>(await response.Content.ReadAsStringAsync());
 
             return (response.StatusCode, responseBody);
@@ -70,6 +72,11 @@ namespace ProjectManagement.Infrastructure.Message
             //CancellationToken cancellationToken = new CancellationTokenSource(60).Token;
             response = await client.SendAsync(request);
             return response;
+        }
+
+        public void RemoveAccessToken()
+        {
+            HttpClientProvider.HttpClient.DefaultRequestHeaders.Remove(accessTokenHeaderName);
         }
     }
 }

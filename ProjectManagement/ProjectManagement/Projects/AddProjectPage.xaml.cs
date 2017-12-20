@@ -14,9 +14,9 @@ namespace ProjectManagement.Projects
     /// </summary>
     public partial class AddProjectPage : Page
     {
-        private ProjectsWindow mainWindow;
+        private MainWindow mainWindow;
 
-        public AddProjectPage(ProjectsWindow mainWindow)
+        public AddProjectPage(MainWindow mainWindow)
         {
             this.mainWindow = mainWindow;
             InitializeComponent();
@@ -34,7 +34,7 @@ namespace ProjectManagement.Projects
             var response = await mainWindow.CommandQueryDispatcher.SendAsync(project, "api/project-management/projects", HttpOperationType.POST);
             if (response.StatusCode == HttpStatusCode.Created)
             {
-                mainWindow.Content = mainWindow.ProjectsPage;
+                mainWindow.MainFrame.Content = mainWindow.ProjectsPage;
                 mainWindow.ProjectsPage.LoadProjects();
                 ProjectName.Text = "";
             }

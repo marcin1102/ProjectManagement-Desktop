@@ -17,7 +17,7 @@ namespace ProjectManagement.Infrastructure.Http
                 var jArray = JArray.Parse(content);
                 MessageBox.Show($"ERROR! \n {string.Join("\n", jArray.Children()["errorMessage"].Values<string>())}");
             }
-            catch (System.Exception ex)
+            catch (Exception)
             {
                 var jsonContent = JObject.Parse(content);
                 var properties = jsonContent.Properties().Where(x => x.Name == "errorMessage");

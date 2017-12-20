@@ -1,54 +1,41 @@
-﻿using Newtonsoft.Json.Linq;
-using ProjectManagement.Infrastructure.Http;
-using ProjectManagement.Infrastructure.Message;
-using ProjectManagement.Infrastructure.String;
-using ProjectManagement.Infrastructure.UserSettings;
+﻿using ProjectManagement.Infrastructure.Message;
 using ProjectManagement.Projects;
 using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Net;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using UserManagement.Contracts.User.Commands;
-using UserManagement.Contracts.User.Queries;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
 namespace ProjectManagement
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
+        internal readonly CommandQueryDispatcher CommandQueryDispatcher;
+        internal readonly ProjectsPage ProjectsPage;
+        internal readonly AddProjectPage AddProjectPage;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            CommandQueryDispatcher = new CommandQueryDispatcher();
+            ProjectsPage = new ProjectsPage(this);
+            MainFrame.Content = ProjectsPage;
+            AddProjectPage = new AddProjectPage(this);
         }
 
-        private async void LoginButton_Click(object sender, RoutedEventArgs e)
+        private void ProjectsNaviButton_Click(object sender, RoutedEventArgs e)
         {
-            var commandQueryDispatcher = new CommandQueryDispatcher();
-            var login = new Login(LoginTextBox.Text, PasswordTextBox.Text);
-
-            var response = await commandQueryDispatcher.SendAsync(login, "api/user-management/users/login", HttpOperationType.POST);
-            if(response.StatusCode == HttpStatusCode.OK)
-            {
-                await SetUpCurrentUser(commandQueryDispatcher, LoginTextBox.Text);
-                var projectsWindow = new ProjectsWindow();
-                projectsWindow.Show();
-                Close();
-            }
-            else
-            {
-                ResponseExtensions.ToMessageBox(response.ResponseContent);
-            }
-        }
-
-        private async Task SetUpCurrentUser(CommandQueryDispatcher commandQueryDispatcher, string email)
-        {
-            var userResponse = await commandQueryDispatcher.SendAsync<UserResponse>($"api/user-management/users/{email}");
-            CurrentUser.Id = userResponse.ResponseContent.Id;
-            CurrentUser.Email = userResponse.ResponseContent.Email;
-            CurrentUser.Type = (UserType)Enum.Parse(typeof(UserType), userResponse.ResponseContent.Role);
+            MainFrame.Content = ProjectsPage;
+            ProjectsPage.LoadProjects();
         }
     }
 }
