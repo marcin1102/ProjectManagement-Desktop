@@ -5,19 +5,19 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectManagement.Projects"
       mc:Ignorable="d" Title="ProjectsPage" Height="410" Width="462">
-    
+
     <Grid Margin="0,0,2,0" ContextMenuOpening="Grid_ContextMenuOpening">
         <Grid.RowDefinitions>
-            <RowDefinition Height="25*"/>
-            <RowDefinition Height="205*"/>
-            <RowDefinition Height="39*"/>
+            <RowDefinition Height="38*"/>
+            <RowDefinition Height="319*"/>
+            <RowDefinition Height="53*"/>
         </Grid.RowDefinitions>
-        <TextBlock HorizontalAlignment="Center" Margin="0,0,0,0" TextWrapping="Wrap" Text="Choose your project" VerticalAlignment="Center" Width="272" TextAlignment="Center" Height="21" Grid.Row="0"/>
+        <TextBlock HorizontalAlignment="Center" Margin="94,8" TextWrapping="Wrap" Text="Choose your project" VerticalAlignment="Center" Width="272" TextAlignment="Center" Height="22" Grid.Row="0"/>
         <DataGrid x:Name="ProjectsDataGrid" HorizontalAlignment="Stretch" Margin="8,3,7,3" VerticalAlignment="Stretch"  Grid.Row="1"/>
-        <Button x:Name="ManageProjectButton" Content="Manage Project" HorizontalAlignment="Right" Margin="0,0,5,0" VerticalAlignment="Center" Width="80" Grid.Row="2" Height="20" FontSize="11"/>
-        <Button x:Name="LogOutButton" Content="Log out" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center" Width="80" Grid.Row="2" Height="20" FontSize="11" Click="LogOutButton_Click"/>
-        <Button x:Name="CreateProjectButton" Content="Create Project" HorizontalAlignment="Right" Margin="250,20,130,20" VerticalAlignment="Center" Width="80" Grid.Row="2" Height="20" FontSize="11" Click="CreateProjectButton_Click"/>
-        <Button x:Name="ReloadProjectsButton" Content="Reload Projects" HorizontalAlignment="Left" Margin="130,20,0,20" VerticalAlignment="Center" Width="80" Grid.Row="2" Height="20" FontSize="11" Click="ReloadProjectsButton_Click"/>
+        <Button x:Name="ManageProjectButton" Content="Manage Project" HorizontalAlignment="Right" Margin="0,15,5,18" VerticalAlignment="Center" Width="80" Grid.Row="2" Height="20" FontSize="11"/>
+        <Button x:Name="LogOutButton" Content="Log out" HorizontalAlignment="Left" Margin="5,15,0,18" VerticalAlignment="Center" Width="80" Grid.Row="2" Height="20" FontSize="11" Click="LogOutButton_Click"/>
+        <Button x:Name="CreateProjectButton" Content="Create Project" HorizontalAlignment="Right" Margin="0,15,130,18" VerticalAlignment="Center" Width="80" Grid.Row="2" Height="20" FontSize="11" Click="CreateProjectButton_Click"/>
+        <Button x:Name="ReloadProjectsButton" Content="Reload Projects" HorizontalAlignment="Left" Margin="130,15,0,18" VerticalAlignment="Center" Width="80" Grid.Row="2" Height="20" FontSize="11" Click="ReloadProjectsButton_Click"/>
 
     </Grid>
 </Page>
