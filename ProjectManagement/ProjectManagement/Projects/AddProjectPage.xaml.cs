@@ -44,7 +44,7 @@ namespace ProjectManagement.Projects
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            mainWindow.Content = mainWindow.ProjectsPage;
+            mainWindow.MainFrame.Content = mainWindow.ProjectsPage;
         }
 
         private async void CreateButton_Click(object sender, RoutedEventArgs e)

@@ -1,0 +1,43 @@
+﻿<Page x:Class="ProjectManagement.Issue.CreateIssue"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProjectManagement.Issue"
+      xmlns:CurrentUser="clr-namespace:ProjectManagement.Infrastructure.UserSettings;assembly=ProjectManagement.Infrastructure"
+      mc:Ignorable="d" 
+      Title="CreateIssue"
+      Height="410" Width="462" Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="205*"/>
+            <RowDefinition Height="39*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock HorizontalAlignment="Center" Margin="0,0,0,0" TextWrapping="Wrap" Text="Create Issue" FontWeight="Bold" FontSize="17" VerticalAlignment="Center" Width="272" TextAlignment="Center" Height="21" Grid.Row="0"/>
+
+        <ComboBox Name="IssueType" FontSize="11" Height="20" Width="100" VerticalAlignment="Top" Margin="0,15,0,0" Grid.Row="1" ItemsSource="{Binding Source={x:Static local:IssueTypesList.IssueTypes}}" SelectedItem="Task" SelectionChanged="IssueType_SelectionChanged"/>
+
+
+        <TextBlock Height="20" Width="200" VerticalAlignment="Top" Margin="0,40,0,0" Text="Title" TextAlignment="Center" FontSize="16" Grid.Row="1"/>
+        <TextBox Name="Title" Height="20" Width="200" VerticalAlignment="Top" Margin="0,65,0,0" Text="" FontSize="15" Grid.Row="1"/>
+
+        <TextBlock Height="20" Width="200" VerticalAlignment="Top" Margin="0,90,0,0" Text="Description" TextAlignment="Center" FontSize="16" Grid.Row="1"/>
+        <TextBox Name="Description" Height="30" Width="200" VerticalAlignment="Top" Margin="0,115,0,0" TextWrapping="Wrap" Text="" FontSize="12" Grid.Row="1"/>
+
+        <TextBlock Height="20" Width="200" VerticalAlignment="Top" Margin="0,150,0,0" Text="Reporter" TextAlignment="Center" FontSize="16" Grid.Row="1"/>
+        <TextBlock Background="White" Name="Reporter" TextAlignment="Center" Height="20" Width="200" VerticalAlignment="Top" Margin="0,175,0,0" Text="{Binding Source={x:Static CurrentUser:CurrentUser.FullName}}" FontSize="16" Grid.Row="1"/>
+
+        <TextBlock Height="20" Width="200" VerticalAlignment="Top" Margin="0,200,0,0" Text="Assignee" TextAlignment="Center" FontSize="16" Grid.Row="1"/>
+        <ComboBox Name="Assignee" Height="20" Width="200" VerticalAlignment="Top" Margin="0,225,0,0" FontSize="15" Grid.Row="1"/>
+
+        <TextBlock Height="20" Width="200" VerticalAlignment="Top" Margin="0,250,0,0" Text="Link To" TextAlignment="Center" FontSize="16" Grid.Row="1"/>
+        <ComboBox Name="IssuesToLink" FontSize="24" Height="20" Width="200" VerticalAlignment="Top" Margin="0,275,0,0" Grid.Row="1" IsEnabled="{Binding Source={x:Static local:CreateIssue.IsLinkable}}"/>
+
+        <Button Name="CreateButton" Content="Create" Height="20" Width="150" HorizontalAlignment="Right" Margin="0,0,50,0" FontSize="11" Grid.Row="2" Click="CreateButton_Click"/>
+        <Button Name="CancelButton" Content="Cancel" Height="20" Width="150" HorizontalAlignment="Left" Margin="50,0,0,0" FontSize="11" Grid.Row="2"/>
+
+    </Grid>
+</Page>

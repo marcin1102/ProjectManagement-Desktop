@@ -4,11 +4,43 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectManagement.Users"
+      xmlns:User="clr-namespace:ProjectManagement.Infrastructure.UserSettings;assembly=ProjectManagement.Infrastructure"
+      xmlns:System="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
-      Title="UsersPage">
+      Title="UsersPage" Height="410" Width="462">
 
-    <Grid>
-        
+    <Grid Margin="0,0,2,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="38*"/>
+            <RowDefinition Height="319*"/>
+            <RowDefinition Height="53*"/>
+        </Grid.RowDefinitions>
+        <TextBlock HorizontalAlignment="Center" Margin="94,8" TextWrapping="Wrap" Text="Users" VerticalAlignment="Center" Width="272" TextAlignment="Center" Height="22" Grid.Row="0"/>
+        <DataGrid x:Name="UserDataGrid" HorizontalAlignment="Stretch" Margin="8,3,7,3" VerticalAlignment="Stretch"  Grid.Row="1" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="FirstName" Visibility="Visible" Binding="{Binding FirstName}" IsReadOnly="True" />
+                <DataGridTextColumn Header="LastName" Visibility="Visible" Binding="{Binding LastName}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Email" Visibility="Visible" Binding="{Binding Email}" IsReadOnly="True" />
+                <DataGridTemplateColumn Header="Role" Visibility="Visible" IsReadOnly="True" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox x:Name="RoleComboBox" Text="{Binding Role}" SelectedValue="{Binding Role}" ItemsSource="{x:Static local:UserRole.Roles}" SelectionChanged="RoleComboBox_SelectionChanged" IsEnabled="{x:Static User:CurrentUser.IsAdmin}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="ConfirmChange" Visibility="Hidden" IsReadOnly="True" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="ConfirmChangeButton" Content="Confirm" Click="ConfirmChangeButton_Click" Visibility="{Binding RoleChanged}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="LogOutButton" Content="Log out" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center" Width="120" Grid.Row="2" Height="20" FontSize="11" Click="LogOutButton_Click"/>
+        <Button x:Name="CreateUserButton" Content="Create User" HorizontalAlignment="Right" Margin="0,0,5,0" VerticalAlignment="Center" Width="120" Grid.Row="2" Height="20" FontSize="11" Click="CreateUserButton_Click"/>
+        <Button x:Name="ReloadUsersButton" Content="Reload Users" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="120" Grid.Row="2" Height="20" FontSize="11" Click="ReloadUsersButton_Click"/>
+
     </Grid>
 </Page>

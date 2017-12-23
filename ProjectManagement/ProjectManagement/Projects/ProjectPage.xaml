@@ -1,0 +1,47 @@
+﻿<Page x:Class="ProjectManagement.Projects.ProjectPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProjectManagement.Projects"
+      mc:Ignorable="d" 
+      Title="ProjectPage" Height="410" Width="462">
+
+    <Grid Margin="0,0,2,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="153*"/>
+            <ColumnDefinition Width="153*"/>
+            <ColumnDefinition Width="154*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="38*"/>
+            <RowDefinition Height="26*"/>
+            <RowDefinition Height="293*"/>
+            <RowDefinition Height="53*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock HorizontalAlignment="Center" Margin="94,8" TextWrapping="Wrap" Text="Project name" VerticalAlignment="Center" Width="272" TextAlignment="Center" Height="22" Grid.Row="0" Grid.ColumnSpan="3"/>
+
+        <TextBlock Text="TODO" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock Text="In Progress" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock Text="Done" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+
+        <DataGrid Name="TodoDataGrid" Grid.Row="2" Grid.Column="0"  AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Visibility="Hidden" Binding="{Binding Title}" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid Name="InProgressDataGrid" Grid.Row="2" Grid.Column="1">
+
+        </DataGrid>
+        <DataGrid Name="DoneDataGrid" Grid.Row="2" Grid.Column="2">
+
+        </DataGrid>
+        <Button x:Name="ManageProjectButton" Content="Manage Issue" HorizontalAlignment="Right" Margin="0,15,5,18" VerticalAlignment="Center" Width="80" Grid.Row="4" Height="20" FontSize="11" Grid.Column="2"/>
+        <Button x:Name="LogOutButton" Content="Log out" HorizontalAlignment="Left" Margin="5,15,0,18" VerticalAlignment="Center" Width="80" Grid.Row="4" Height="20" FontSize="11"/>
+        <Button x:Name="CreateProjectButton" Content="Create Issue" HorizontalAlignment="Right" Margin="0,15,130,18" VerticalAlignment="Center" Width="80" Grid.Row="4" Height="20" FontSize="11" Grid.ColumnSpan="3" Grid.Column="1" Click="CreateProjectButton_Click"/>
+        <Button x:Name="ReloadProjectsButton" Content="Reload Issues" HorizontalAlignment="Left" Margin="130,15,0,18" VerticalAlignment="Center" Width="80" Grid.Row="4" Height="20" FontSize="11" Grid.ColumnSpan="3"/>
+
+    </Grid>
+</Page>

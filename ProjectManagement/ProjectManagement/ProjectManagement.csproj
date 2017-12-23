@@ -243,8 +243,8 @@
     <Reference Include="ProjectManagement.Infrastructure.Primitives, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ProjectManagement.Infrastructure.Primitives.1.0.0\lib\netstandard2.0\ProjectManagement.Infrastructure.Primitives.dll</HintPath>
     </Reference>
-    <Reference Include="ProjectManagementView.Contracts, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ProjectManagementView.Contracts.1.1.0\lib\netstandard2.0\ProjectManagementView.Contracts.dll</HintPath>
+    <Reference Include="ProjectManagementView.Contracts, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ProjectManagementView.Contracts.1.3.0\lib\netstandard2.0\ProjectManagementView.Contracts.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.AppContext, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -363,8 +363,8 @@
       <HintPath>..\packages\System.Xml.XPath.XDocument.4.3.0\lib\net46\System.Xml.XPath.XDocument.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="UserManagement.Contracts, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UserManagement.Contracts.1.1.0\lib\netstandard2.0\UserManagement.Contracts.dll</HintPath>
+    <Reference Include="UserManagement.Contracts, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\UserManagement.Contracts.2.1.0\lib\netstandard2.0\UserManagement.Contracts.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
@@ -375,9 +375,25 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Issue\CreateIssue.xaml.cs">
+      <DependentUpon>CreateIssue.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Issue\IssueTypesList.cs" />
+    <Compile Include="Projects\ProjectPage.xaml.cs">
+      <DependentUpon>ProjectPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Users\CreateUserPage.xaml.cs">
+      <DependentUpon>CreateUserPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Users\Models\UserCollectionItem.cs" />
+    <Compile Include="Users\UserRole.cs" />
     <Compile Include="Users\UsersPage.xaml.cs">
       <DependentUpon>UsersPage.xaml</DependentUpon>
     </Compile>
+    <Page Include="Issue\CreateIssue.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LoginWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -398,7 +414,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Projects\ProjectPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Projects\ProjectsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Users\CreateUserPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

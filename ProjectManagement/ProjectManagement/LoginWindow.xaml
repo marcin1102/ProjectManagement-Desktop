@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectManagement"
         mc:Ignorable="d"
-        Title="Login screen" Height="350" Width="525">
+        Title="Login screen" Height="350" Width="525" KeyDown="Window_KeyDown">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="67*"/>

@@ -38,7 +38,7 @@ namespace ProjectManagement.Infrastructure.Message
             }
 
             var responseContent = await response.Content.ReadAsStringAsync();
-            if (uri.Contains("login"))
+            if (uri.Contains("login") && response.StatusCode == HttpStatusCode.OK)
             {
                 HttpClientProvider.HttpClient.DefaultRequestHeaders.Add(accessTokenHeaderName, responseContent.Replace("token: ", ""));
             }

@@ -24,26 +24,25 @@ namespace ProjectManagement.Projects
     /// </summary>
     public partial class ProjectsPage : Page
     {
-        private MainWindow projectsWindow;
+        private MainWindow mainWindow;
         private IEnumerable<ProjectListItem> projects;
 
         public ProjectsPage(MainWindow projectsWindow)
         {
-            this.projectsWindow = projectsWindow;
+            this.mainWindow = projectsWindow;
             InitializeComponent();
-            LoadProjects();
         }
 
         internal async void LoadProjects()
         {
-            var response = await projectsWindow.CommandQueryDispatcher.SendAsync<IEnumerable<ProjectListItem>>($"api/project-management/projects?isAdmin={CurrentUser.Type == UserType.Admin}");
+            var response = await mainWindow.CommandQueryDispatcher.SendAsync<IEnumerable<ProjectListItem>>($"api/project-management/projects?isAdmin={CurrentUser.Type == UserType.Admin}");
 
             if (response.StatusCode != System.Net.HttpStatusCode.OK)
                 MessageBox.Show("Failed to load projects");
             else
             {
                 projects = response.ResponseContent;
-                ProjectsDataGrid.ItemsSource = projects;
+                ProjectsDataGrid.ItemsSource = projects.ToList();
             }            
         }
 
@@ -54,7 +53,7 @@ namespace ProjectManagement.Projects
 
         private void CreateProjectButton_Click(object sender, RoutedEventArgs e)
         {
-            projectsWindow.MainFrame.Content = projectsWindow.AddProjectPage;
+            mainWindow.MainFrame.Content = mainWindow.AddProjectPage;
         }
 
         private void ReloadProjectsButton_Click(object sender, RoutedEventArgs e)
@@ -64,10 +63,20 @@ namespace ProjectManagement.Projects
 
         private async void LogOutButton_Click(object sender, RoutedEventArgs e)
         {
-            projectsWindow.CommandQueryDispatcher.RemoveAccessToken();
+            mainWindow.CommandQueryDispatcher.RemoveAccessToken();
             new LoginWindow().Show();
-            projectsWindow.Visibility = Visibility.Hidden;
-            projectsWindow.Close();
+            mainWindow.Visibility = Visibility.Hidden;
+            mainWindow.Close();
+        }
+
+        private void ManageProjectButton_Click(object sender, RoutedEventArgs e)
+        {
+            var project = (ProjectListItem)ProjectsDataGrid.SelectedItem;
+            if (project == null)
+                return;
+
+            mainWindow.ProjectPage.SetProjectId(project.Id);
+            mainWindow.MainFrame.Content = mainWindow.ProjectPage;
         }
     }
 }
