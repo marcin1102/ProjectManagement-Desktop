@@ -31,13 +31,13 @@
         <TextBlock Background="White" Name="Reporter" TextAlignment="Center" Height="20" Width="200" VerticalAlignment="Top" Margin="0,175,0,0" Text="{Binding Source={x:Static CurrentUser:CurrentUser.FullName}}" FontSize="16" Grid.Row="1"/>
 
         <TextBlock Height="20" Width="200" VerticalAlignment="Top" Margin="0,200,0,0" Text="Assignee" TextAlignment="Center" FontSize="16" Grid.Row="1"/>
-        <ComboBox Name="Assignee" Height="20" Width="200" VerticalAlignment="Top" Margin="0,225,0,0" FontSize="15" Grid.Row="1"/>
+        <ComboBox Name="Assignee" Height="20" Width="200" VerticalAlignment="Top" Margin="0,225,0,0" FontSize="12" Grid.Row="1" DisplayMemberPath="Email"/>
 
         <TextBlock Height="20" Width="200" VerticalAlignment="Top" Margin="0,250,0,0" Text="Link To" TextAlignment="Center" FontSize="16" Grid.Row="1"/>
-        <ComboBox Name="IssuesToLink" FontSize="24" Height="20" Width="200" VerticalAlignment="Top" Margin="0,275,0,0" Grid.Row="1" IsEnabled="{Binding Source={x:Static local:CreateIssue.IsLinkable}}"/>
+        <ComboBox Name="IssuesToLink" FontSize="12" Height="20" Width="200" VerticalAlignment="Top" Margin="0,275,0,0" Grid.Row="1" DisplayMemberPath="Title" IsEnabled="{Binding IsLinkable, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Button Name="CreateButton" Content="Create" Height="20" Width="150" HorizontalAlignment="Right" Margin="0,0,50,0" FontSize="11" Grid.Row="2" Click="CreateButton_Click"/>
-        <Button Name="CancelButton" Content="Cancel" Height="20" Width="150" HorizontalAlignment="Left" Margin="50,0,0,0" FontSize="11" Grid.Row="2"/>
+        <Button Name="CancelButton" Content="Cancel" Height="20" Width="150" HorizontalAlignment="Left" Margin="50,0,0,0" FontSize="11" Grid.Row="2" Click="CancelButton_Click"/>
 
     </Grid>
 </Page>

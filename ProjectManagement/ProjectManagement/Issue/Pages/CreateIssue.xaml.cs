@@ -7,6 +7,7 @@ using ProjectManagementView.Contracts.Issues.Enums;
 using ProjectManagementView.Contracts.Projects;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,23 +26,36 @@ namespace ProjectManagement.Issue
     /// <summary>
     /// Interaction logic for CreateIssue.xaml
     /// </summary>
-    public partial class CreateIssue : Page
+    public partial class CreateIssue : Page, INotifyPropertyChanged
     {
         private Guid projectId;
         private MainWindow mainWindow;
 
         public static IssueType issueType;
-        public static bool IsLinkable
+        private bool isLinkable;
+        public bool IsLinkable
         {
-            get => issueType == ProjectManagementView.Contracts.Issues.Enums.IssueType.Bug ||
-                    issueType == ProjectManagementView.Contracts.Issues.Enums.IssueType.Subtask;
+            get => isLinkable;
+            set
+            {
+                isLinkable = value;
+                OnPropertyChanged("IsLinkable");
+            }
         }
 
         private IEnumerable<IssueListItem> issues;
         private IEnumerable<UserData> users;
 
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
         public CreateIssue(MainWindow mainWindow, Guid projectId)
         {
+            mainWindow.DataContext = this;
+
             InitializeComponent();
             this.projectId = projectId;
             this.mainWindow = mainWindow;
@@ -50,18 +64,21 @@ namespace ProjectManagement.Issue
         private void IssueType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             issueType = (IssueType)Enum.Parse(typeof(IssueType), (string)IssueType.SelectedItem);
+            IsLinkable = issueType == ProjectManagementView.Contracts.Issues.Enums.IssueType.Bug ||
+                            issueType == ProjectManagementView.Contracts.Issues.Enums.IssueType.Subtask;
+
             switch (issueType)
             {
                 case ProjectManagementView.Contracts.Issues.Enums.IssueType.Subtask:
                     IssuesToLink.ItemsSource = issues
                         .Where(x => x.IssueType == ProjectManagementView.Contracts.Issues.Enums.IssueType.Task)
-                        .Select(x => new IssueToLink(x.Id, x.Title))
+                        .Select(x => new IssueToLink(x.Id, x.Title, x.IssueType))
                         .ToList();
                     break;
                 case ProjectManagementView.Contracts.Issues.Enums.IssueType.Bug:
                     IssuesToLink.ItemsSource = issues
                         .Where(x => x.IssueType == ProjectManagementView.Contracts.Issues.Enums.IssueType.Task || x.IssueType == ProjectManagementView.Contracts.Issues.Enums.IssueType.Nfr)
-                        .Select(x => new IssueToLink(x.Id, x.Title))
+                        .Select(x => new IssueToLink(x.Id, x.Title, x.IssueType))
                         .ToList();
                     break;
                 default:
@@ -116,7 +133,7 @@ namespace ProjectManagement.Issue
                     await CreateNewIssue(new CreateNfr(Title.Text, Description.Text, CurrentUser.Id, assignee?.Id, null));
                     break;
                 case ProjectManagementView.Contracts.Issues.Enums.IssueType.Subtask:
-                    var linkIssue = (IssueListItem)IssuesToLink.SelectedItem;
+                    var linkIssue = (IssueToLink)IssuesToLink.SelectedItem;
                     if(linkIssue == null)
                     {
                         MessageBox.Show("You must choose Task to link first");
@@ -125,7 +142,7 @@ namespace ProjectManagement.Issue
                     await CreateNewIssue(new AddSubtaskToTask(Title.Text, Description.Text, CurrentUser.Id, assignee?.Id, null), ProjectManagementView.Contracts.Issues.Enums.IssueType.Task, linkIssue.Id);
                     break;
                 case ProjectManagementView.Contracts.Issues.Enums.IssueType.Bug:
-                    linkIssue = (IssueListItem)IssuesToLink.SelectedItem;
+                    linkIssue = (IssueToLink)IssuesToLink.SelectedItem;
                     if (linkIssue == null)
                     {
                         MessageBox.Show("You must choose Task or Nfr to link first");
@@ -163,7 +180,6 @@ namespace ProjectManagement.Issue
 
             mainWindow.MainFrame.Content = mainWindow.ProjectPage;
             await mainWindow.ProjectPage.LoadIssues();
-            mainWindow.CreateIssuePage = new CreateIssue(mainWindow, projectId);
         }
 
         private bool AreFieldsValid()
@@ -179,17 +195,24 @@ namespace ProjectManagement.Issue
            
             return areValid;
         }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.MainFrame.Content = mainWindow.ProjectPage;
+        }
     }
 
     class IssueToLink
     {
-        public IssueToLink(Guid id, string title)
+        public IssueToLink(Guid id, string title, IssueType issueType)
         {
             Id = id;
             Title = title;
+            IssueType = issueType;
         }
 
         public Guid Id { get; private set; }
         public string Title { get; private set; }
+        public IssueType IssueType { get; private set; }
     }
 }

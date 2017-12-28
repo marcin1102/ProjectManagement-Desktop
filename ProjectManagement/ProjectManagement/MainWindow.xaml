@@ -4,9 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectManagement"
+        xmlns:Project="clr-namespace:ProjectManagement.Projects"
         xmlns:Users="clr-namespace:ProjectManagement.Users"
         xmlns:User="clr-namespace:ProjectManagement.Infrastructure.UserSettings;assembly=ProjectManagement.Infrastructure"
-        xmlns:IssueType="clr-namespace:ProjectManagement.Issue"
+        xmlns:Issue="clr-namespace:ProjectManagement.Issue"
         mc:Ignorable="d"
         Title="MainWindow" Height="480" Width="462"
         SizeToContent="WidthAndHeight"
@@ -15,6 +16,7 @@
     <Window.Resources>
         <Users:UserRole x:Key="userRole"/>
         <User:CurrentUser x:Key="currentUser"/>
+        <Project:ProjectData x:Key="projectData"/>
     </Window.Resources>
     
     <Grid>

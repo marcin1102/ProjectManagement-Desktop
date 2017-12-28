@@ -1,20 +1,7 @@
 ﻿using ProjectManagement.Infrastructure.Message;
-using ProjectManagement.Issue;
 using ProjectManagement.Projects;
 using ProjectManagement.Users;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace ProjectManagement
 {
@@ -26,7 +13,7 @@ namespace ProjectManagement
         internal readonly UsersPage UsersPage;
         internal readonly CreateUserPage CreateUserPage;
         internal readonly ProjectPage ProjectPage;
-        internal CreateIssue CreateIssuePage; 
+        internal ManageUsersPage ManageUsersPage;
 
         public MainWindow()
         {

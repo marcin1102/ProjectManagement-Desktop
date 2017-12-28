@@ -61,7 +61,7 @@ namespace ProjectManagement.Projects
             LoadProjects();
         }
 
-        private async void LogOutButton_Click(object sender, RoutedEventArgs e)
+        private void LogOutButton_Click(object sender, RoutedEventArgs e)
         {
             mainWindow.CommandQueryDispatcher.RemoveAccessToken();
             new LoginWindow().Show();
@@ -75,7 +75,7 @@ namespace ProjectManagement.Projects
             if (project == null)
                 return;
 
-            mainWindow.ProjectPage.SetProjectId(project.Id);
+            mainWindow.ProjectPage.SetProject(project.Id, project.Name);
             mainWindow.MainFrame.Content = mainWindow.ProjectPage;
         }
     }

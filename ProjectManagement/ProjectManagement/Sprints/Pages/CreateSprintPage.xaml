@@ -1,0 +1,34 @@
+﻿<Page x:Class="ProjectManagement.Sprints.Pages.CreateSprintPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProjectManagement.Sprints.Pages"
+      mc:Ignorable="d"      
+      Title="CreateSprint" Height="410" Width="462">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="19*"/>
+            <RowDefinition Height="75*"/>
+            <RowDefinition Height="81*"/>
+            <RowDefinition Height="30*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock HorizontalAlignment="Center" Margin="95,8" TextWrapping="Wrap" Text="Create Sprint" FontWeight="Bold" FontSize="17" VerticalAlignment="Center" Width="272" TextAlignment="Center" Height="22" Grid.Row="0"/>
+
+        <TextBlock Height="30" VerticalAlignment="Top" Margin="131,30,131,0" Text="Name" TextAlignment="Center" FontSize="20" Grid.Row="1"/>
+        <TextBox Name="Name" Height="20" VerticalAlignment="Top" Margin="81,60,81,0" Text="" FontSize="15" Grid.Row="1"/>
+
+
+        <TextBlock Height="30" VerticalAlignment="Top" Margin="63,25,199,0" Text="From:" TextAlignment="Center" FontSize="20" Grid.Row="2"/>
+        <DatePicker Name="From" HorizontalAlignment="Left" Margin="229,26,0,0" Grid.Row="2" VerticalAlignment="Top" Height="24" Width="102"/>
+
+        <TextBlock Height="30" VerticalAlignment="Top" Margin="63,80,199,0" Text="To:" TextAlignment="Center" FontSize="20" Grid.Row="2"/>
+        <DatePicker Name="To" HorizontalAlignment="Left" Margin="229,81,0,0" Grid.Row="2" VerticalAlignment="Top" Height="24" Width="102"/>
+
+        <Button Name="CreateButton" Content="Create" Width="150" HorizontalAlignment="Right" Margin="0,20,50,20" FontSize="11" Grid.Row="3" Click="CreateButton_Click"/>
+        <Button Name="CancelButton" Content="Cancel" Width="150" HorizontalAlignment="Left" Margin="50,20,0,20" FontSize="11" Grid.Row="3" Click="CancelButton_Click"/>
+
+    </Grid>
+</Page>

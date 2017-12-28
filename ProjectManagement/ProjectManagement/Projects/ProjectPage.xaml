@@ -20,28 +20,96 @@
             <RowDefinition Height="53*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock HorizontalAlignment="Center" Margin="94,8" TextWrapping="Wrap" Text="Project name" VerticalAlignment="Center" Width="272" TextAlignment="Center" Height="22" Grid.Row="0" Grid.ColumnSpan="3"/>
+        <TextBlock HorizontalAlignment="Center" Margin="94,8" TextWrapping="Wrap" Text="{Binding Source={x:Static local:ProjectData.ProjectName}}" VerticalAlignment="Center" Width="272" TextAlignment="Center" Height="22" Grid.Row="0" Grid.ColumnSpan="3"/>
 
-        <TextBlock Text="TODO" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBlock Text="In Progress" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBlock Text="Done" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock HorizontalAlignment="Left" Margin="5,0,0,0" Text="Current Sprint:" VerticalAlignment="Center" Width="100" TextAlignment="Center" Height="20" Grid.Row="1" Grid.ColumnSpan="3"/>
+        <TextBlock Name="Sprint" HorizontalAlignment="Left" Margin="100,0,0,0" Text="" VerticalAlignment="Center" Width="200" TextAlignment="Center" Height="20" Grid.Row="1" Grid.ColumnSpan="3"/>
+        <Button Name="ManageSprintsButton" Grid.Row="1" Height="20" Content="Manage Sprints" Grid.Column="3" HorizontalAlignment="Center" Margin="0,0,0,0" Click="ManageSprintsButton_Click"/>
 
-
-        <DataGrid Name="TodoDataGrid" Grid.Row="2" Grid.Column="0"  AutoGenerateColumns="False">
+        <DataGrid Name="TodoDataGrid" Grid.Row="2" Grid.Column="0"  AutoGenerateColumns="False" ColumnWidth="*" SelectionChanged="TodoDataGrid_SelectionChanged">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" Visibility="Hidden" Binding="{Binding Title}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="TO DO" Visibility="Visible" Binding="{Binding TitleWithType}" IsReadOnly="True"/>
             </DataGrid.Columns>
+            <DataGrid.Resources>
+                <ContextMenu x:Key="menu">
+                    <MenuItem Header="Manage issue" Click="ManageIssueButton_Click"/>
+                    <MenuItem Name="MoveToInProgressMenuItem" Header="Move to In Progress" Click="MoveToInProgressMenuItem_Click"/>
+                </ContextMenu>
+            </DataGrid.Resources>
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow" BasedOn="{StaticResource {x:Type DataGridRow}}">
+                    <Setter Property="ContextMenu" Value="{StaticResource menu}" />
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="Background" Value="Transparent"/>
+                </Style>
+            </DataGrid.CellStyle>
         </DataGrid>
-        <DataGrid Name="InProgressDataGrid" Grid.Row="2" Grid.Column="1">
 
+        <DataGrid Name="InProgressDataGrid" Grid.Row="2" Grid.Column="1" ColumnWidth="*" AutoGenerateColumns="False" SelectionChanged="InProgressDataGrid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="In Progress" Visibility="Visible" Binding="{Binding TitleWithType}" IsReadOnly="True"/>
+            </DataGrid.Columns>
+            <DataGrid.Resources>
+                <ContextMenu x:Key="menu">
+                    <MenuItem Header="Manage issue" Click="ManageIssueButton_Click"/>
+                    <MenuItem Name="MoveToDoneMenuItem" Header="Move to Done" Click="MoveToDoneMenuItem_Click"/>
+                </ContextMenu>
+            </DataGrid.Resources>
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow" BasedOn="{StaticResource {x:Type DataGridRow}}">
+                    <Setter Property="ContextMenu" Value="{StaticResource menu}" />
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="Background" Value="Transparent"/>
+                </Style>
+            </DataGrid.CellStyle>
         </DataGrid>
-        <DataGrid Name="DoneDataGrid" Grid.Row="2" Grid.Column="2">
 
+        <DataGrid Name="DoneDataGrid" Grid.Row="2" Grid.Column="2" ColumnWidth="*" AutoGenerateColumns="False" SelectionChanged="DoneDataGrid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="DONE" Visibility="Visible" Binding="{Binding TitleWithType}" IsReadOnly="True"/>
+            </DataGrid.Columns>
+            <DataGrid.Resources>
+                <ContextMenu x:Key="menu">
+                    <MenuItem Header="Manage issue" Click="ManageIssueButton_Click"/>
+                </ContextMenu>
+            </DataGrid.Resources>
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow" BasedOn="{StaticResource {x:Type DataGridRow}}">
+                    <Setter Property="ContextMenu" Value="{StaticResource menu}" />
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="Background" Value="Transparent"/>
+                </Style>
+            </DataGrid.CellStyle>
         </DataGrid>
-        <Button x:Name="ManageProjectButton" Content="Manage Issue" HorizontalAlignment="Right" Margin="0,15,5,18" VerticalAlignment="Center" Width="80" Grid.Row="4" Height="20" FontSize="11" Grid.Column="2"/>
-        <Button x:Name="LogOutButton" Content="Log out" HorizontalAlignment="Left" Margin="5,15,0,18" VerticalAlignment="Center" Width="80" Grid.Row="4" Height="20" FontSize="11"/>
-        <Button x:Name="CreateProjectButton" Content="Create Issue" HorizontalAlignment="Right" Margin="0,15,130,18" VerticalAlignment="Center" Width="80" Grid.Row="4" Height="20" FontSize="11" Grid.ColumnSpan="3" Grid.Column="1" Click="CreateProjectButton_Click"/>
-        <Button x:Name="ReloadProjectsButton" Content="Reload Issues" HorizontalAlignment="Left" Margin="130,15,0,18" VerticalAlignment="Center" Width="80" Grid.Row="4" Height="20" FontSize="11" Grid.ColumnSpan="3"/>
+        <Button x:Name="ManageIssueButton" Content="Manage Issue" HorizontalAlignment="Right" Margin="0,15,5,18" VerticalAlignment="Center" Width="80" Grid.Row="4" Height="20" FontSize="11" Grid.Column="2" Click="ManageIssueButton_Click"/>
+        <Button x:Name="LogOutButton" Content="Log out" HorizontalAlignment="Left" Margin="5,15,0,18" VerticalAlignment="Center" Width="80" Grid.Row="4" Height="20" FontSize="11" Click="LogOutButton_Click"/>
+        <Button x:Name="CreateProjectButton" Content="Create Issue" HorizontalAlignment="Right" Margin="0,15,100,18" VerticalAlignment="Center" Width="80" Grid.Row="4" Height="20" FontSize="11" Grid.ColumnSpan="3" Grid.Column="1" Click="CreateProjectButton_Click"/>
+        <Button x:Name="ReloadProjectsButton" Content="Reload Issues" HorizontalAlignment="Left" Margin="100,15,0,18" VerticalAlignment="Center" Width="80" Grid.Row="4" Height="20" FontSize="11" Grid.ColumnSpan="3" Click="ReloadProjectsButton_Click"/>
+        <Button x:Name="ManageUsers" Content="Manage Users" HorizontalAlignment="Center" Margin="0,15,0,18" VerticalAlignment="Center" Width="80" Grid.Row="4" Height="20" FontSize="11" Grid.ColumnSpan="3" Click="ManageUsers_Click"/>
 
     </Grid>
 </Page>

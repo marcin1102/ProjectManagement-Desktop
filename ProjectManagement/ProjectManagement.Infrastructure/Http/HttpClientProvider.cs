@@ -11,7 +11,7 @@ namespace ProjectManagement.Infrastructure.Http
     {
         internal static HttpClient HttpClient = new HttpClient()
         {
-            BaseAddress = new Uri("https://projectmanagementbackend.azurewebsites.net/")
+            BaseAddress = new Uri("http://localhost:5000/")
         };
     }
 }

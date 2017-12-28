@@ -16,7 +16,27 @@
         <DataGrid x:Name="ProjectsDataGrid" HorizontalAlignment="Stretch" Margin="8,3,7,3" VerticalAlignment="Stretch"  Grid.Row="1" AutoGenerateColumns="False" ColumnWidth="*">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Visibility="Visible" Binding="{Binding Name}" IsReadOnly="True"/>
-            </DataGrid.Columns>            
+            </DataGrid.Columns>
+            <DataGrid.Resources>
+                <ContextMenu x:Key="menu">
+                    <MenuItem Header="Manage project" Click="ManageProjectButton_Click"/>
+                </ContextMenu>
+            </DataGrid.Resources>
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow" BasedOn="{StaticResource {x:Type DataGridRow}}">
+                    <Setter Property="ContextMenu" Value="{StaticResource menu}" />
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="Background" Value="Transparent"/>
+                </Style>
+            </DataGrid.CellStyle>
         </DataGrid>
         <Button x:Name="ManageProjectButton" Content="Manage Project" HorizontalAlignment="Right" Margin="0,15,5,18" VerticalAlignment="Center" Width="80" Grid.Row="2" Height="20" FontSize="11" Click="ManageProjectButton_Click"/>
         <Button x:Name="LogOutButton" Content="Log out" HorizontalAlignment="Left" Margin="5,15,0,18" VerticalAlignment="Center" Width="80" Grid.Row="2" Height="20" FontSize="11" Click="LogOutButton_Click"/>
