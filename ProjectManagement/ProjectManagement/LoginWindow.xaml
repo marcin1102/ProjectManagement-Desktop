@@ -16,8 +16,9 @@
         <TextBlock HorizontalAlignment="Stretch" Height="19" Margin="0,5,0,0" TextAlignment="Center" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" Grid.Row="1"/>
         <TextBox x:Name="LoginTextBox" HorizontalAlignment="Stretch" Height="23" Margin="20,24,20,0" TextWrapping="Wrap"  VerticalAlignment="Top" Grid.Row="1"/>
         <PasswordBox x:Name="PasswordTextBox" HorizontalAlignment="Stretch" Height="23" Margin="20,76,20,0" VerticalAlignment="Top" Grid.Row="1"/>
-        <Button x:Name="LoginButton" Content="Login" HorizontalAlignment="Center" Margin="0,125,0,0" VerticalAlignment="Top" Click="LoginButton_Click" Grid.Row="1" Height="20" Width="50"/>
+        <Button x:Name="LoginButton" Content="Login" HorizontalAlignment="Center" Margin="0,145,0,0" VerticalAlignment="Top" Click="LoginButton_Click" Grid.Row="1" Height="20" Width="50"/>
         <TextBlock HorizontalAlignment="Stretch" Height="19" Margin="0,57,0,0" TextAlignment="Center" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Grid.Row="1"/>
+        <CheckBox Name="LocalWork" Content="Local Server" HorizontalAlignment="Center" Margin="0,115,0,0" Grid.Row="1" VerticalAlignment="Top" Width="90"/>
 
     </Grid>
 </Window>

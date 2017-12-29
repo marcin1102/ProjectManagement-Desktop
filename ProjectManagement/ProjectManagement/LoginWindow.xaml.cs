@@ -27,6 +27,12 @@ namespace ProjectManagement
 
         private async void Login()
         {
+            bool isServerLocal = false;
+            if (LocalWork.IsChecked.HasValue && LocalWork.IsChecked.Value)
+                isServerLocal = true;
+
+            HttpClientProvider.SetHttpClientUri(isServerLocal);
+
             var commandQueryDispatcher = new CommandQueryDispatcher();
             var login = new Login(LoginTextBox.Text, PasswordTextBox.Password);
 
