@@ -1,4 +1,5 @@
-﻿using ProjectManagement.Contracts.Issue.Commands;
+﻿using ProjectManagement.Contracts.Bug.Commands;
+using ProjectManagement.Contracts.Issue.Commands;
 using ProjectManagement.Contracts.Nfr.Commands;
 using ProjectManagement.Contracts.Task.Commands;
 using ProjectManagement.Infrastructure.UserSettings;
@@ -145,8 +146,8 @@ namespace ProjectManagement.Issue
                     linkIssue = (IssueToLink)IssuesToLink.SelectedItem;
                     if (linkIssue == null)
                     {
-                        MessageBox.Show("You must choose Task or Nfr to link first");
-                        return;
+                        await CreateNewIssue(new CreateBug(Title.Text, Description.Text, CurrentUser.Id, assignee?.Id, null));
+                        break;
                     }
                     switch (linkIssue.IssueType)
                     {

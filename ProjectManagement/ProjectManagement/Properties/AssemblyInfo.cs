@@ -10,7 +10,7 @@ using System.Windows;
 [assembly: AssemblyTitle("ProjectManagement")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Marcin Gurbiel")]
 [assembly: AssemblyProduct("ProjectManagement")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]

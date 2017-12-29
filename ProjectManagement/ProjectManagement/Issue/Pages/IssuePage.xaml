@@ -19,8 +19,9 @@
 
         <TextBlock Name="TitleTextBlock" HorizontalAlignment="Center" Margin="10,8" TextWrapping="Wrap" Text="ISSUE TITLE BIND HERE" FontWeight="Bold" FontSize="17" VerticalAlignment="Center" Width="442" TextAlignment="Center" Height="22" Grid.Row="0"/>
 
-        <TextBlock Name="DescriptionTextBlock" Height="80" VerticalAlignment="Center" Margin="0,6,0,145" Text="BIND DESCRIPTION HERE" TextWrapping="Wrap" TextAlignment="Justify" FontSize="12" Grid.Row="1" Grid.RowSpan="2"/>
-
+        <ScrollViewer Background="LightGray" Grid.Row="1">
+            <TextBlock Name="DescriptionTextBlock" VerticalAlignment="Top" Text="BIND DESCRIPTION HERE" TextWrapping="Wrap" TextAlignment="Justify" FontSize="12"/>
+        </ScrollViewer>
         <TextBlock  Height="20" HorizontalAlignment="Left" FontWeight="Bold" VerticalAlignment="Top" Margin="20,10,0,0" Text="Status:" TextAlignment="Center" FontSize="16" Grid.Row="2" Width="71"/>
         <TextBlock Background="LightGray" Name="Status" Height="20" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,10,0,0" FontSize="15" Grid.Row="2"/>
         
@@ -38,16 +39,48 @@
         <Button Name="MoveToInProgressButton" HorizontalAlignment="Left" Height="20" Width="120" Margin="60,130,0,5" Grid.Row="2" Content="Move To In Progress" Click="MoveToInProgressButton_Click"/>
         <Button Name="MoveToDoneButton" HorizontalAlignment="Right" Height="20" Width="120" Margin="0,130,60,5" Grid.Row="2" Content="Move To Done" IsEnabled="True" Click="MoveToDoneButton_Click"/>
 
-        <ListBox Name="Comments" HorizontalAlignment="Stretch" Margin="0,7" Grid.Row="3" VerticalAlignment="Stretch">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Background="LightGray" Text="{Binding MemberFullName}"/>
-                        <TextBlock Text="{Binding Content}" TextWrapping="Wrap"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <TabControl Grid.Row="3">
+            <TabItem Header="Comments">
+                <ListBox Name="Comments" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Stretch">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Background="LightGray" Text="{Binding MemberFullName}"/>
+                                <TextBlock Text=" "/>
+                                <TextBlock Text="{Binding Content}" TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </TabItem>
+            <TabItem Header="Related Issues">
+                <ListBox Name="RelatedIssues" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Stretch">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" >
+                                <TextBlock Background="LightGray" Text="{Binding Status}"/>
+                                <TextBlock Text=" "/>
+                                <TextBlock Text="{Binding TitleWithType}" TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    <ListBox.Resources>
+                        <ContextMenu x:Key="menu">
+                            <MenuItem Name="ManageIssue" Header="Manage issue" Click="ManageIssue_Click"/>
+                        </ContextMenu>
+                        <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                            <Setter Property="ContextMenu" Value="{StaticResource menu}" />
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListBox.Resources>
+                </ListBox>
+            </TabItem>
+        </TabControl>
+        
 
         <Button Name="CommentButton" Content="Comment" Width="150" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,6,50,12" FontSize="11" Grid.Row="4" Height="18" Click="CommentButton_Click"/>
         <Button Name="ReturnButton" Content="Return" Width="150" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="50,6,0,12" FontSize="11" Grid.Row="4" Click="ReturnButton_Click" Height="18"/>

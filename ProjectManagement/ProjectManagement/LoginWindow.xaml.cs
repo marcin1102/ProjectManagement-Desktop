@@ -35,6 +35,8 @@ namespace ProjectManagement
             {
                 await SetUpCurrentUser(commandQueryDispatcher, LoginTextBox.Text);
                 var projectsWindow = new MainWindow();
+                projectsWindow.Top = this.Top;
+                projectsWindow.Left = this.Left;
                 projectsWindow.Show();
                 Close();
             }

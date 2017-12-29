@@ -52,7 +52,10 @@ namespace ProjectManagement.Users
         private void LogOutButton_Click(object sender, RoutedEventArgs e)
         {
             mainWindow.CommandQueryDispatcher.RemoveAccessToken();
-            new LoginWindow().Show();
+            var window = new LoginWindow();
+            window.Top = mainWindow.Top;
+            window.Left = mainWindow.Left;
+            window.Show();
             mainWindow.Visibility = Visibility.Hidden;
             mainWindow.Close();
         }

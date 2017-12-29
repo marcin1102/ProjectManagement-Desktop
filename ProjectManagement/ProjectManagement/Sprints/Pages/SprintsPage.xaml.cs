@@ -57,5 +57,16 @@ namespace ProjectManagement.Sprints.Pages
         {
             mainWindow.MainFrame.Content = new CreateSprintPage(mainWindow, ProjectData.ProjectId);
         }
+
+        private void ManageSprintButton_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedSprint = (SprintListItem)SprintDataGrid.SelectedItem;
+            if(selectedSprint == null)
+            {
+                MessageBox.Show("Select sprint first");
+                return;
+            }
+            mainWindow.MainFrame.Content = new ManageSprint(mainWindow, selectedSprint.Id);
+        }
     }
 }

@@ -11,7 +11,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="480" Width="462"
         SizeToContent="WidthAndHeight"
-        ResizeMode="NoResize" Loaded="Window_Loaded">
+        ResizeMode="CanMinimize" Loaded="Window_Loaded" Icon="Icons/checklist_icon.png">
 
     <Window.Resources>
         <Users:UserRole x:Key="userRole"/>
@@ -31,7 +31,7 @@
         </StackPanel>
         
 
-        <Frame x:Name="MainFrame" Grid.Row="1">
+        <Frame x:Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden">
 
         </Frame>
 

@@ -64,7 +64,10 @@ namespace ProjectManagement.Projects
         private void LogOutButton_Click(object sender, RoutedEventArgs e)
         {
             mainWindow.CommandQueryDispatcher.RemoveAccessToken();
-            new LoginWindow().Show();
+            var window = new LoginWindow();
+            window.Top = mainWindow.Top;
+            window.Left = mainWindow.Left;
+            window.Show();
             mainWindow.Visibility = Visibility.Hidden;
             mainWindow.Close();
         }
@@ -73,8 +76,11 @@ namespace ProjectManagement.Projects
         {
             var project = (ProjectListItem)ProjectsDataGrid.SelectedItem;
             if (project == null)
+            {
+                MessageBox.Show("Select project first");
                 return;
-
+            }
+            mainWindow.ProjectPage = new ProjectPage(mainWindow);
             mainWindow.ProjectPage.SetProject(project.Id, project.Name);
             mainWindow.MainFrame.Content = mainWindow.ProjectPage;
         }

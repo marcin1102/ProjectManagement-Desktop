@@ -6,13 +6,19 @@
         xmlns:local="clr-namespace:ProjectManagement.Projects"
         mc:Ignorable="d"
         Title="AssignUserWindow" Height="209" Width="354" ResizeMode="NoResize">
-    
-    <Grid Loaded="Grid_Loaded">
-        <TextBlock Text="Assign User" HorizontalAlignment="Center" Height="25" FontSize="18" VerticalAlignment="Top" Margin="0,30,0,0"/>
-        <ComboBox Name="Users" HorizontalAlignment="Center" Margin="0,80,55,0" VerticalAlignment="Top" Width="194" DisplayMemberPath="Email" />
-        <Button Name="Reload" Content="Reload" Height="22" Width="50" Margin="0,1,50,0" VerticalAlignment="Center" HorizontalAlignment="Right" Click="Reload_Click"/>
 
-        <Button Name="Cancel" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="50,0,0,20" Content="Cancel" Height="25" Width="80" Click="Cancel_Click"/>
-        <Button Name="Confirm" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,50,20" Content="Confirm" Height="25" Width="80" Click="Confirm_Click"/>
+    <Grid Loaded="Grid_Loaded">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="75*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Assign User" HorizontalAlignment="Center" Height="25" FontSize="18" VerticalAlignment="Center"/>
+        
+        <ComboBox Name="Users" HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Center" Width="194" DisplayMemberPath="Email" Grid.Row="1" />
+        <Button Name="Reload" Content="Reload" Height="25" Width="50" Margin="0,0,50,0" VerticalAlignment="Center" HorizontalAlignment="Right" Click="Reload_Click" Grid.Row="1"/>
+
+        <Button Name="Cancel" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="50,0,0,20" Content="Cancel" Height="25" Width="80" Click="Cancel_Click" Grid.Row="2"/>
+        <Button Name="Confirm" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,50,20" Content="Confirm" Height="25" Width="80" Click="Confirm_Click" Grid.Row="2"/>
     </Grid>
 </Window>

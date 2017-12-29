@@ -20,7 +20,7 @@
             <RowDefinition Height="53*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock HorizontalAlignment="Center" Margin="94,8" TextWrapping="Wrap" Text="{Binding Source={x:Static local:ProjectData.ProjectName}}" VerticalAlignment="Center" Width="272" TextAlignment="Center" Height="22" Grid.Row="0" Grid.ColumnSpan="3"/>
+        <TextBlock Name="TitleTextBlock" HorizontalAlignment="Center" Margin="94,8" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="272" TextAlignment="Center" Height="22" Grid.Row="0" Grid.ColumnSpan="3"/>
 
         <TextBlock HorizontalAlignment="Left" Margin="5,0,0,0" Text="Current Sprint:" VerticalAlignment="Center" Width="100" TextAlignment="Center" Height="20" Grid.Row="1" Grid.ColumnSpan="3"/>
         <TextBlock Name="Sprint" HorizontalAlignment="Left" Margin="100,0,0,0" Text="" VerticalAlignment="Center" Width="200" TextAlignment="Center" Height="20" Grid.Row="1" Grid.ColumnSpan="3"/>

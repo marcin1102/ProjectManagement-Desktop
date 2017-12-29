@@ -21,7 +21,7 @@
                 <DataGridTextColumn Header="LastName" Visibility="Visible" Binding="{Binding LastName}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="LogOutButton" Content="Log out" HorizontalAlignment="Left" Margin="5,15,0,18" VerticalAlignment="Center" Width="120" Grid.Row="2" Height="20" FontSize="11" Click="LogOutButton_Click"/>
+        <Button x:Name="ReturnButton" Content="Return" HorizontalAlignment="Left" Margin="5,15,0,18" VerticalAlignment="Center" Width="120" Grid.Row="2" Height="20" FontSize="11" Click="ReturnButton_Click"/>
         <Button x:Name="AssignUserButton" Content="Assign User" HorizontalAlignment="Right" Margin="0,15,5,18" VerticalAlignment="Center" Width="120" Grid.Row="2" Height="20" FontSize="11" Click="AssignUserButton_Click"/>
         <Button x:Name="ReloadUsersButton" Content="Reload Users" HorizontalAlignment="Center" Margin="0,15,0,18" VerticalAlignment="Center" Width="120" Grid.Row="2" Height="20" FontSize="11" Click="ReloadUsersButton_Click"/>
 

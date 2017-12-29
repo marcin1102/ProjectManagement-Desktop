@@ -33,20 +33,17 @@ namespace ProjectManagement.Projects
             LoadUsers();
         }
 
-        private void LogOutButton_Click(object sender, RoutedEventArgs e)
+        private void ReturnButton_Click(object sender, RoutedEventArgs e)
         {
-            mainWindow.CommandQueryDispatcher.RemoveAccessToken();
-            new LoginWindow().Show();
-            mainWindow.Visibility = Visibility.Hidden;
-            mainWindow.Close();
+            mainWindow.MainFrame.Content = mainWindow.ProjectPage;
         }
 
-        private void ReloadUsersButton_Click(object sender, RoutedEventArgs e)
+        private async void ReloadUsersButton_Click(object sender, RoutedEventArgs e)
         {
-            LoadUsers();
+            await LoadUsers();
         }
 
-        internal async void LoadUsers()
+        internal async Task LoadUsers()
         {
             var response = await mainWindow.CommandQueryDispatcher.SendAsync<IEnumerable<UserData>>($"api/project-management/projects/{projectId}/users");
 
@@ -61,7 +58,10 @@ namespace ProjectManagement.Projects
 
         private void AssignUserButton_Click(object sender, RoutedEventArgs e)
         {
-            new AssignUserWindow(this, projectId).ShowDialog();
+            var window = new AssignUserWindow(this, projectId);
+            window.Top = mainWindow.Top;
+            window.Left = mainWindow.Left;
+            window.ShowDialog();
         }
     }
 }

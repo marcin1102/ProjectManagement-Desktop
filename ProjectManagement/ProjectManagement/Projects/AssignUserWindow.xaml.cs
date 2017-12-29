@@ -59,6 +59,7 @@ namespace ProjectManagement.Projects
                 return;
             }
 
+            page.LoadUsers();
             Close();
         }
 

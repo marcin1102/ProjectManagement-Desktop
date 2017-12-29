@@ -2,6 +2,7 @@
 using ProjectManagement.Contracts.Nfr.Commands;
 using ProjectManagement.Contracts.Task.Commands;
 using ProjectManagement.Infrastructure.Http;
+using ProjectManagement.Projects;
 using ProjectManagementView.Contracts.Issues;
 using ProjectManagementView.Contracts.Issues.Enums;
 using ProjectManagementView.Contracts.Projects;
@@ -47,6 +48,7 @@ namespace ProjectManagement.Issue
         MainWindow mainWindow;
         Guid projectId;
         Guid issueId;
+        Page previousPage;
         IssueResponse issueResponse;
         UserData newAssignee;
         SprintListItem newSprint;
@@ -58,7 +60,7 @@ namespace ProjectManagement.Issue
         }
 
 
-        public IssuePage(MainWindow mainWindow, Guid projectId, Guid issueId)
+        public IssuePage(MainWindow mainWindow, Guid projectId, Guid issueId, Page previousPage)
         {
             mainWindow.DataContext = this;
             AssigneeConfirmButtonVisibility = Visibility.Hidden;
@@ -68,11 +70,12 @@ namespace ProjectManagement.Issue
             this.mainWindow = mainWindow;
             this.projectId = projectId;
             this.issueId = issueId;
+            this.previousPage = previousPage;
         }
 
         private void ReturnButton_Click(object sender, RoutedEventArgs e)
         {
-            mainWindow.MainFrame.Content = mainWindow.ProjectPage;
+            mainWindow.MainFrame.Content = previousPage;
         }
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
@@ -87,7 +90,7 @@ namespace ProjectManagement.Issue
             if (response.StatusCode != System.Net.HttpStatusCode.OK)
             {
                 MessageBox.Show($"Cannot load issue. Http operation status code: {response.StatusCode}");
-                mainWindow.MainFrame.Content = mainWindow.ProjectPage;
+                mainWindow.MainFrame.Content = previousPage;
                 return;
             }
 
@@ -120,6 +123,31 @@ namespace ProjectManagement.Issue
         {
             await LoadPossibleAssignees();
             await LoadSprints();
+            await LoadRelatedIssues();
+        }
+
+        private async Task LoadRelatedIssues()
+        {
+            (HttpStatusCode StatusCode, IReadOnlyCollection<IssueListItem> ResponseContent) response = (HttpStatusCode.NotFound, null);
+            switch (issueResponse.IssueType)
+            {
+                case ProjectManagementView.Contracts.Issues.Enums.IssueType.Task:
+                    response = await mainWindow.CommandQueryDispatcher.SendAsync<IReadOnlyCollection<IssueListItem>>($"api/project-management/projects/{projectId}/tasks/{issueId}/related-issues");
+                    break;
+                case ProjectManagementView.Contracts.Issues.Enums.IssueType.Nfr:
+                    response = await mainWindow.CommandQueryDispatcher.SendAsync<IReadOnlyCollection<IssueListItem>>($"api/project-management/projects/{projectId}/nfrs/{issueId}/related-issues");
+                    break;
+                default:
+                    return;
+            }
+
+            if(response.StatusCode != HttpStatusCode.OK)
+            {
+                MessageBox.Show($"Cannot load related issues. Http operation status code: {response.StatusCode}");
+                return;
+            }
+
+            RelatedIssues.ItemsSource = response.ResponseContent;
         }
 
         private async Task LoadSprints()
@@ -339,6 +367,17 @@ namespace ProjectManagement.Issue
 
             MoveToInProgressButton.IsEnabled = false;
             MoveToDoneButton.IsEnabled = false;
+        }
+
+        private void ManageIssue_Click(object sender, RoutedEventArgs e)
+        {
+            var issue = (IssueListItem)RelatedIssues.SelectedItem;
+            if (issue == null)
+            {
+                MessageBox.Show("Select issue first");
+                return;
+            }
+            mainWindow.MainFrame.Content = new IssuePage(mainWindow, ProjectData.ProjectId, issue.Id, this);
         }
     }
 }

@@ -38,6 +38,7 @@ namespace ProjectManagement.Projects
         {
             ProjectData.ProjectId = projectId;
             ProjectData.ProjectName = projectName;
+            TitleTextBlock.Text = projectName;
             mainWindow.ManageUsersPage = new ManageUsersPage(projectId, mainWindow);
             LoadIssues();
             LoadSprint();
@@ -84,7 +85,10 @@ namespace ProjectManagement.Projects
         private void LogOutButton_Click(object sender, RoutedEventArgs e)
         {
             mainWindow.CommandQueryDispatcher.RemoveAccessToken();
-            new LoginWindow().Show();
+            var window = new LoginWindow();
+            window.Top = mainWindow.Top;
+            window.Left = mainWindow.Left;
+            window.Show();
             mainWindow.Visibility = Visibility.Hidden;
             mainWindow.Close();
         }
@@ -102,7 +106,7 @@ namespace ProjectManagement.Projects
                 MessageBox.Show("Select issue first");
                 return;
             }
-            mainWindow.MainFrame.Content = new Issue.IssuePage(mainWindow, ProjectData.ProjectId, selectedIssue.Id);
+            mainWindow.MainFrame.Content = new Issue.IssuePage(mainWindow, ProjectData.ProjectId, selectedIssue.Id, this);
         }
 
         private IssueListItem GetSelectedInGridIssue()
@@ -145,7 +149,7 @@ namespace ProjectManagement.Projects
         private async void MoveToInProgressMenuItem_Click(object sender, RoutedEventArgs e)
         {
             var selectedIssue = (IssueListItem)TodoDataGrid.SelectedItem;
-            var issuePage = new Issue.IssuePage(mainWindow, ProjectData.ProjectId, selectedIssue.Id);
+            var issuePage = new Issue.IssuePage(mainWindow, ProjectData.ProjectId, selectedIssue.Id, this);
             await issuePage.LoadIssue();
             var response = await issuePage.MarkAsInProgress();
 
@@ -161,7 +165,7 @@ namespace ProjectManagement.Projects
         private async void MoveToDoneMenuItem_Click(object sender, RoutedEventArgs e)
         {
             var selectedIssue = (IssueListItem)InProgressDataGrid.SelectedItem;
-            var issuePage = new Issue.IssuePage(mainWindow, ProjectData.ProjectId, selectedIssue.Id);
+            var issuePage = new Issue.IssuePage(mainWindow, ProjectData.ProjectId, selectedIssue.Id, this);
             await issuePage.LoadIssue();
             var response = await issuePage.MarkAsDone();
 

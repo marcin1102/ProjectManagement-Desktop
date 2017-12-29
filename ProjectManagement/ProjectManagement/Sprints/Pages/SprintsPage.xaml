@@ -20,7 +20,7 @@
             </DataGrid.Columns>
             <DataGrid.Resources>
                 <ContextMenu x:Key="menu">
-                    <MenuItem Name="ManageSprint" Header="Manage sprint"/>
+                    <MenuItem Name="ManageSprint" Header="Manage sprint" Click="ManageSprintButton_Click"/>
                 </ContextMenu>
             </DataGrid.Resources>
             <DataGrid.RowStyle>
@@ -39,7 +39,7 @@
                 </Style>
             </DataGrid.CellStyle>
         </DataGrid>
-        <Button x:Name="ManageSprintButton" Content="Manage Sprint" HorizontalAlignment="Right" Margin="0,15,5,18" VerticalAlignment="Center" Width="80" Grid.Row="2" Height="20" FontSize="11"/>
+        <Button x:Name="ManageSprintButton" Content="Manage Sprint" HorizontalAlignment="Right" Margin="0,15,5,18" VerticalAlignment="Center" Width="80" Grid.Row="2" Height="20" FontSize="11" Click="ManageSprintButton_Click"/>
         <Button x:Name="Return" Content="Return" HorizontalAlignment="Left" Margin="5,15,0,18" VerticalAlignment="Center" Width="80" Grid.Row="2" Height="20" FontSize="11" Click="Return_Click"/>
         <Button x:Name="CreateSprintButton" Content="Create Sprint" HorizontalAlignment="Right" Margin="0,15,130,18" VerticalAlignment="Center" Width="80" Grid.Row="2" Height="20" FontSize="11" Click="CreateSprintButton_Click"/>
         <Button x:Name="ReloadSprintsButton" Content="Reload Sprints" HorizontalAlignment="Left" Margin="130,15,0,18" VerticalAlignment="Center" Width="80" Grid.Row="2" Height="20" FontSize="11" Click="ReloadSprintsButton_Click"/>

@@ -12,7 +12,7 @@ namespace ProjectManagement
         internal readonly AddProjectPage AddProjectPage;
         internal readonly UsersPage UsersPage;
         internal readonly CreateUserPage CreateUserPage;
-        internal readonly ProjectPage ProjectPage;
+        public ProjectPage ProjectPage;
         internal ManageUsersPage ManageUsersPage;
 
         public MainWindow()
@@ -25,7 +25,6 @@ namespace ProjectManagement
             AddProjectPage = new AddProjectPage(this);
             UsersPage = new UsersPage(this);
             CreateUserPage = new CreateUserPage(this);
-            ProjectPage = new ProjectPage(this);
         }
 
         private void ProjectsNaviButton_Click(object sender, RoutedEventArgs e)

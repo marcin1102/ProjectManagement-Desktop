@@ -70,6 +70,7 @@ namespace ProjectManagement.Infrastructure.Message
             HttpResponseMessage response = new HttpResponseMessage();
             // In case you want to set a timeout
             //CancellationToken cancellationToken = new CancellationTokenSource(60).Token;
+
             response = await client.SendAsync(request);
             return response;
         }
