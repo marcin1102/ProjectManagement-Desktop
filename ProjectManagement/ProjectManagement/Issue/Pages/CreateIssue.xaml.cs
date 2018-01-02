@@ -128,10 +128,10 @@ namespace ProjectManagement.Issue
             switch (issueType)
             {
                 case ProjectManagementView.Contracts.Issues.Enums.IssueType.Task:
-                    await CreateNewIssue(new CreateTask(Title.Text, Description.Text, CurrentUser.Id, assignee?.Id, null));
+                    await CreateNewIssue(new CreateTask(Title.Text, Description.Text, assignee?.Id, null));
                     break;
                 case ProjectManagementView.Contracts.Issues.Enums.IssueType.Nfr:
-                    await CreateNewIssue(new CreateNfr(Title.Text, Description.Text, CurrentUser.Id, assignee?.Id, null));
+                    await CreateNewIssue(new CreateNfr(Title.Text, Description.Text, assignee?.Id, null));
                     break;
                 case ProjectManagementView.Contracts.Issues.Enums.IssueType.Subtask:
                     var linkIssue = (IssueToLink)IssuesToLink.SelectedItem;
@@ -140,22 +140,22 @@ namespace ProjectManagement.Issue
                         MessageBox.Show("You must choose Task to link first");
                         return;
                     }
-                    await CreateNewIssue(new AddSubtaskToTask(Title.Text, Description.Text, CurrentUser.Id, assignee?.Id, null), ProjectManagementView.Contracts.Issues.Enums.IssueType.Task, linkIssue.Id);
+                    await CreateNewIssue(new AddSubtaskToTask(Title.Text, Description.Text, assignee?.Id, null), ProjectManagementView.Contracts.Issues.Enums.IssueType.Task, linkIssue.Id);
                     break;
                 case ProjectManagementView.Contracts.Issues.Enums.IssueType.Bug:
                     linkIssue = (IssueToLink)IssuesToLink.SelectedItem;
                     if (linkIssue == null)
                     {
-                        await CreateNewIssue(new CreateBug(Title.Text, Description.Text, CurrentUser.Id, assignee?.Id, null));
+                        await CreateNewIssue(new CreateBug(Title.Text, Description.Text, assignee?.Id, null));
                         break;
                     }
                     switch (linkIssue.IssueType)
                     {
                         case ProjectManagementView.Contracts.Issues.Enums.IssueType.Task:
-                            await CreateNewIssue(new AddBugToTask(Title.Text, Description.Text, CurrentUser.Id, assignee?.Id, null), linkIssue.IssueType, linkIssue.Id);
+                            await CreateNewIssue(new AddBugToTask(Title.Text, Description.Text, assignee?.Id, null), linkIssue.IssueType, linkIssue.Id);
                             break;
                         case ProjectManagementView.Contracts.Issues.Enums.IssueType.Nfr:
-                            await CreateNewIssue(new AddBugToNfr(Title.Text, Description.Text, CurrentUser.Id, assignee?.Id, null), linkIssue.IssueType, linkIssue.Id);
+                            await CreateNewIssue(new AddBugToNfr(Title.Text, Description.Text, assignee?.Id, null), linkIssue.IssueType, linkIssue.Id);
                             break;
                     }
                     break;

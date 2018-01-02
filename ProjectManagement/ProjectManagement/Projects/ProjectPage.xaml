@@ -20,15 +20,28 @@
             <RowDefinition Height="53*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Name="TitleTextBlock" HorizontalAlignment="Center" Margin="94,8" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="272" TextAlignment="Center" Height="22" Grid.Row="0" Grid.ColumnSpan="3"/>
+        <TextBlock Name="TitleTextBlock" HorizontalAlignment="Center" TextWrapping="Wrap" Text="" FontWeight="Bold" FontSize="16" VerticalAlignment="Center" TextAlignment="Center" Height="22" Grid.Row="0" Grid.ColumnSpan="3"/>
 
         <TextBlock HorizontalAlignment="Left" Margin="5,0,0,0" Text="Current Sprint:" VerticalAlignment="Center" Width="100" TextAlignment="Center" Height="20" Grid.Row="1" Grid.ColumnSpan="3"/>
-        <TextBlock Name="Sprint" HorizontalAlignment="Left" Margin="100,0,0,0" Text="" VerticalAlignment="Center" Width="200" TextAlignment="Center" Height="20" Grid.Row="1" Grid.ColumnSpan="3"/>
+        <TextBlock Background="LightGray" Name="Sprint" HorizontalAlignment="Left" Margin="100,0,0,0" Text="" VerticalAlignment="Center" Width="205" TextAlignment="Center" Height="20" Grid.Row="1" Grid.ColumnSpan="3"/>
         <Button Name="ManageSprintsButton" Grid.Row="1" Height="20" Content="Manage Sprints" Grid.Column="3" HorizontalAlignment="Center" Margin="0,0,0,0" Click="ManageSprintsButton_Click"/>
 
-        <DataGrid Name="TodoDataGrid" Grid.Row="2" Grid.Column="0"  AutoGenerateColumns="False" ColumnWidth="*" SelectionChanged="TodoDataGrid_SelectionChanged">
+        <DataGrid Name="TodoDataGrid" Grid.Row="2" Grid.Column="0"  AutoGenerateColumns="False" ColumnWidth="*" SelectionMode="Single" SelectionUnit="FullRow" SelectionChanged="TodoDataGrid_SelectionChanged">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="TO DO" Visibility="Visible" Binding="{Binding TitleWithType}" IsReadOnly="True"/>
+                <DataGridTemplateColumn Header="TO DO" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding TitleWithType}">
+                                <TextBlock.ToolTip>
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding IssueType}"/>
+                                        <TextBlock Text="{Binding Title}"/>
+                                    </StackPanel>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
             <DataGrid.Resources>
                 <ContextMenu x:Key="menu">
@@ -53,9 +66,22 @@
             </DataGrid.CellStyle>
         </DataGrid>
 
-        <DataGrid Name="InProgressDataGrid" Grid.Row="2" Grid.Column="1" ColumnWidth="*" AutoGenerateColumns="False" SelectionChanged="InProgressDataGrid_SelectionChanged">
+        <DataGrid Name="InProgressDataGrid" Grid.Row="2" Grid.Column="1" ColumnWidth="*" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow" SelectionChanged="InProgressDataGrid_SelectionChanged">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="In Progress" Visibility="Visible" Binding="{Binding TitleWithType}" IsReadOnly="True"/>
+                <DataGridTemplateColumn Header="In Progress" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding TitleWithType}">
+                                <TextBlock.ToolTip>
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding IssueType}"/>
+                                        <TextBlock Text="{Binding Title}"/>
+                                    </StackPanel>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
             <DataGrid.Resources>
                 <ContextMenu x:Key="menu">
@@ -80,9 +106,22 @@
             </DataGrid.CellStyle>
         </DataGrid>
 
-        <DataGrid Name="DoneDataGrid" Grid.Row="2" Grid.Column="2" ColumnWidth="*" AutoGenerateColumns="False" SelectionChanged="DoneDataGrid_SelectionChanged">
+        <DataGrid Name="DoneDataGrid" Grid.Row="2" Grid.Column="2" ColumnWidth="*" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow" SelectionChanged="DoneDataGrid_SelectionChanged">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="DONE" Visibility="Visible" Binding="{Binding TitleWithType}" IsReadOnly="True"/>
+                <DataGridTemplateColumn Header="Done" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding TitleWithType}">
+                                <TextBlock.ToolTip>
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding IssueType}"/>
+                                        <TextBlock Text="{Binding Title}"/>
+                                    </StackPanel>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
             <DataGrid.Resources>
                 <ContextMenu x:Key="menu">

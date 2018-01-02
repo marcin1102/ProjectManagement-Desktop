@@ -18,6 +18,7 @@ namespace ProjectManagement
         public MainWindow()
         {
             InitializeComponent();
+            Title = "Project Management";
 
             CommandQueryDispatcher = new CommandQueryDispatcher();
             ProjectsPage = new ProjectsPage(this);

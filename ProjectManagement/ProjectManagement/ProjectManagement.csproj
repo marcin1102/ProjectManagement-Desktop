@@ -256,8 +256,8 @@
     <Reference Include="Newtonsoft.Json.Bson, Version=1.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.Bson.1.0.1\lib\net45\Newtonsoft.Json.Bson.dll</HintPath>
     </Reference>
-    <Reference Include="ProjectManagement.Contracts, Version=6.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ProjectManagement.Contracts.6.1.0\lib\netstandard2.0\ProjectManagement.Contracts.dll</HintPath>
+    <Reference Include="ProjectManagement.Contracts, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ProjectManagement.Contracts.7.0.0\lib\netstandard2.0\ProjectManagement.Contracts.dll</HintPath>
     </Reference>
     <Reference Include="ProjectManagement.Infrastructure.Primitives, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ProjectManagement.Infrastructure.Primitives.1.0.0\lib\netstandard2.0\ProjectManagement.Infrastructure.Primitives.dll</HintPath>
@@ -528,7 +528,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

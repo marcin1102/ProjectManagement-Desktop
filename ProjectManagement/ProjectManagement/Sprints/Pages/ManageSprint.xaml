@@ -9,23 +9,25 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="26*"/>
-            <RowDefinition Height="156*"/>
-            <RowDefinition Height="23*"/>
+            <RowDefinition Height="52*"/>
+            <RowDefinition Height="153*"/>
+            <RowDefinition Height="118*"/>
+            <RowDefinition Height="41*"/>
+            <RowDefinition Height="46*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Name="SprintName" Grid.Row="0" Height="30" TextAlignment="Center" Text="Name" FontSize="22" FontWeight="Bold"/>
+        <TextBlock Name="SprintName" Grid.Row="0" Height="30" TextAlignment="Center" Text="Name" FontSize="22" FontWeight="Bold" Margin="0,11"/>
 
-        <TextBlock  Height="20" HorizontalAlignment="Left" FontWeight="Bold" VerticalAlignment="Top" Margin="50,50,0,0" Text="Status:" TextAlignment="Center" FontSize="16" Grid.Row="1" Width="71"/>
-        <TextBlock Background="LightGray" Name="Status" Height="20" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top" TextAlignment="Center" Margin="130,50,0,0" FontSize="15" Grid.Row="1"/>
+        <TextBlock  Height="20" HorizontalAlignment="Left" FontWeight="Bold" VerticalAlignment="Top" Margin="50,10,0,0" Text="Status:" TextAlignment="Center" FontSize="16" Grid.Row="1" Width="71"/>
+        <TextBlock Background="LightGray" Name="Status" Height="20" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top" TextAlignment="Center" Margin="130,10,0,0" FontSize="15" Grid.Row="1"/>
 
-        <TextBlock  Height="20" HorizontalAlignment="Left" FontWeight="Bold" VerticalAlignment="Top" Margin="31,100,0,0" Text="Start date:" TextAlignment="Center" FontSize="16" Grid.Row="1" Width="80"/>
-        <TextBlock Background="LightGray" Name="From" Height="20" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="130,100,0,0" TextAlignment="Center" FontSize="15" Grid.Row="1" IsEnabled="False" Text=""/>
+        <TextBlock  Height="20" HorizontalAlignment="Left" FontWeight="Bold" VerticalAlignment="Top" Margin="31,60,0,0" Text="Start date:" TextAlignment="Center" FontSize="16" Grid.Row="1" Width="80"/>
+        <TextBlock Background="LightGray" Name="From" Height="20" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="130,60,0,0" TextAlignment="Center" FontSize="15" Grid.Row="1" IsEnabled="False" Text=""/>
 
-        <TextBlock  Height="20" HorizontalAlignment="Left" FontWeight="Bold" VerticalAlignment="Top" Margin="35,150,0,0" Text="End date:" TextAlignment="Center" FontSize="16" Grid.Row="1" Width="80"/>
-        <TextBlock Background="LightGray" Name="To" Height="20" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="130,150,0,0" TextAlignment="Center" FontSize="15" Grid.Row="1" IsEnabled="False"/>
+        <TextBlock  Height="20" HorizontalAlignment="Left" FontWeight="Bold" VerticalAlignment="Top" Margin="35,110,0,0" Text="End date:" TextAlignment="Center" FontSize="16" Grid.Row="1" Width="80"/>
+        <TextBlock Background="LightGray" Name="To" Height="20" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="130,110,0,0" TextAlignment="Center" FontSize="15" Grid.Row="1" IsEnabled="False"/>
 
-        <DataGrid Name="UnfinishedIssues" Grid.Row="1" Height="90" ColumnWidth="*" Margin="5,135,0,0" AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+        <DataGrid Name="UnfinishedIssues" Grid.Row="2" ColumnWidth="*" Margin="5,0,5,0" AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="Unfinished Issues">
                     <DataGridTemplateColumn.CellTemplate>
@@ -58,11 +60,11 @@
                 </Style>
             </DataGrid.CellStyle>
         </DataGrid>
-        
-        <Button Name="StartSprint" Grid.Row="1" Height="30" Width="150" Content="Start Sprint" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="80,270,0,0" Click="StartSprint_Click"/>
-        <Button Name="FinishSprint" Grid.Row="1" Height="30" Width="150" Content="Finish Sprint" FontSize="18" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,270,80,0" Click="FinishSprint_Click"/>
 
-        <Button Name="ReturnButton" Content="Return" Width="150" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="50,0,0,0" FontSize="11" Grid.Row="2" Click="ReturnButton_Click" Height="18"/>
-        <Button Name="ReloadButton" Content="Reload" Width="150" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,50,0" FontSize="11" Grid.Row="2" Click="ReloadButton_Click" Height="18"/>
+        <Button Name="StartSprint" Grid.Row="3" Height="30" Width="150" Content="Start Sprint" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="80,0,0,0" Click="StartSprint_Click"/>
+        <Button Name="FinishSprint" Grid.Row="3" Height="30" Width="150" Content="Finish Sprint" FontSize="18" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,80,0" Click="FinishSprint_Click"/>
+
+        <Button Name="ReturnButton" Content="Return" Width="150" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="50,14,0,14" FontSize="11" Grid.Row="4" Click="ReturnButton_Click" Height="18"/>
+        <Button Name="ReloadButton" Content="Reload" Width="150" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,14,50,14" FontSize="11" Grid.Row="4" Click="ReloadButton_Click" Height="18"/>
     </Grid>
 </Page>

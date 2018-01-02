@@ -76,6 +76,14 @@ namespace ProjectManagement.Issue
         private void ReturnButton_Click(object sender, RoutedEventArgs e)
         {
             mainWindow.MainFrame.Content = previousPage;
+            try
+            {
+                var projectPage = (ProjectPage)previousPage;
+                projectPage.LoadIssues();
+            }
+            catch (Exception)
+            {
+            }
         }
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
