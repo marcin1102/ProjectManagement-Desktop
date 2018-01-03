@@ -16,7 +16,7 @@
             <RowDefinition Height="319*"/>
             <RowDefinition Height="53*"/>
         </Grid.RowDefinitions>
-        <TextBlock HorizontalAlignment="Center" Margin="94,8" TextWrapping="Wrap" Text="Users" VerticalAlignment="Center" Width="272" TextAlignment="Center" Height="22" Grid.Row="0"/>
+        <TextBlock HorizontalAlignment="Center" Margin="94,8" TextWrapping="Wrap" Text="Users" FontSize="16" VerticalAlignment="Center" Width="272" TextAlignment="Center" Height="22" Grid.Row="0"/>
         <DataGrid x:Name="UserDataGrid" HorizontalAlignment="Stretch" Margin="8,3,7,3" VerticalAlignment="Stretch"  Grid.Row="1" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="FirstName" Visibility="Visible" Binding="{Binding FirstName}" IsReadOnly="True" />

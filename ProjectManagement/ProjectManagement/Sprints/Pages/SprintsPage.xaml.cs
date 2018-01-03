@@ -51,6 +51,7 @@ namespace ProjectManagement.Sprints.Pages
         private void Return_Click(object sender, RoutedEventArgs e)
         {
             mainWindow.MainFrame.Content = mainWindow.ProjectPage;
+            mainWindow.ProjectPage.LoadSprint();
         }
 
         private void CreateSprintButton_Click(object sender, RoutedEventArgs e)

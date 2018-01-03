@@ -18,7 +18,7 @@
         <TextBlock HorizontalAlignment="Center" Margin="0,0,0,0" TextWrapping="Wrap" Text="Create new Project" FontSize="15" VerticalAlignment="Center" Width="272" TextAlignment="Center" Height="21" Grid.Row="0"/>
 
         <TextBlock Height="30" Width="200" VerticalAlignment="Top" Margin="0,130,0,0" Text="Project Name:" TextAlignment="Center" FontSize="20" Grid.Row="1"/>
-        <TextBox Name="ProjectName" Height="30" Width="200" VerticalAlignment="Center" Margin="0,50,0,0" Text="" Grid.Row="1"/>
+        <TextBox Name="ProjectName" Height="30" Width="200" VerticalAlignment="Center" Margin="0,50,0,0" Text="" Grid.Row="1" FontSize="18"/>
 
         <Button Name="CreateButton" Content="Create" Height="20" Width="150" HorizontalAlignment="Right" Margin="0,0,50,0" FontSize="11" Grid.Row="2" Click="CreateButton_Click"/>
         <Button Name="CancelButton" Content="Cancel" Height="20" Width="150" HorizontalAlignment="Left" Margin="50,0,0,0" FontSize="11" Grid.Row="2" Click="CancelButton_Click"/>

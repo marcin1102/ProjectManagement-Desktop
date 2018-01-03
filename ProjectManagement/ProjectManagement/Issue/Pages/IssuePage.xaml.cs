@@ -123,6 +123,8 @@ namespace ProjectManagement.Issue
                 case Contracts.Issue.Enums.IssueStatus.Done:
                     MoveToDoneButton.IsEnabled = false;
                     MoveToInProgressButton.IsEnabled = false;
+                    Assignee.IsEnabled = false;
+                    Sprint.IsEnabled = false;
                     break;
             }
         }
@@ -169,7 +171,7 @@ namespace ProjectManagement.Issue
 
             Sprint.ItemsSource = response.ResponseContent;
             if (issueResponse.SprintId.HasValue)
-                Assignee.SelectedItem = response.ResponseContent.SingleOrDefault(x => x.Id == issueResponse.SprintId.Value);
+                Sprint.SelectedItem = response.ResponseContent.SingleOrDefault(x => x.Id == issueResponse.SprintId.Value);
         }
 
         private async Task LoadPossibleAssignees()

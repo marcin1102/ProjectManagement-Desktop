@@ -120,8 +120,7 @@ namespace ProjectManagement.Issue
 
         private async void CreateButton_Click(object sender, RoutedEventArgs e)
         {
-            var areFieldsValid = AreFieldsValid();
-            if (!areFieldsValid)
+            if (!AreFieldsValid())
                 return;
 
             var assignee = (UserData)Assignee.SelectedItem;
@@ -179,8 +178,7 @@ namespace ProjectManagement.Issue
                 return;
             }
 
-            mainWindow.MainFrame.Content = mainWindow.ProjectPage;
-            await mainWindow.ProjectPage.LoadIssues();
+            mainWindow.MainFrame.Content = new IssuePage(mainWindow, projectId, new Guid(response.ResponseContent.Replace("\"", "")), mainWindow.ProjectPage);
         }
 
         private bool AreFieldsValid()
@@ -193,7 +191,15 @@ namespace ProjectManagement.Issue
             }
             else
                 Title.BorderBrush = Brushes.Black;
-           
+
+            if (string.IsNullOrWhiteSpace(Description.Text))
+            {
+                areValid = false;
+                Description.BorderBrush = Brushes.Red;
+            }
+            else
+                Description.BorderBrush = Brushes.Black;
+
             return areValid;
         }
 

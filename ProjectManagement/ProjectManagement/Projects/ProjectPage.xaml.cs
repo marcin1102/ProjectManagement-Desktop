@@ -44,7 +44,7 @@ namespace ProjectManagement.Projects
             LoadSprint();
         }
 
-        private async Task LoadSprint()
+        public async Task LoadSprint()
         {
             var response = await mainWindow.CommandQueryDispatcher.SendAsync<IEnumerable<SprintListItem>>($"api/project-management/projects/{ProjectData.ProjectId}/sprints");
 

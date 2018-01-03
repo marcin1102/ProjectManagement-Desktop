@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -61,7 +62,7 @@ namespace ProjectManagement.Users
         private bool AreFieldsValid()
         {
             bool areValid = true;
-            if(string.IsNullOrWhiteSpace(Email.Text))
+            if(string.IsNullOrWhiteSpace(Email.Text) || !IsValidEmail(Email.Text))
             {
                 areValid = false;
                 Email.BorderBrush = Brushes.Red;
@@ -69,7 +70,7 @@ namespace ProjectManagement.Users
             else
                 Email.BorderBrush = Brushes.Black;
 
-            if (string.IsNullOrWhiteSpace(Password.Password))
+            if (string.IsNullOrWhiteSpace(Password.Password) || Password.Password.Count() < 4)
             {
                 areValid = false;
                 Password.BorderBrush = Brushes.Red;
@@ -102,6 +103,19 @@ namespace ProjectManagement.Users
                 LastName.BorderBrush = Brushes.Black;
 
             return areValid;
+        }
+
+        bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

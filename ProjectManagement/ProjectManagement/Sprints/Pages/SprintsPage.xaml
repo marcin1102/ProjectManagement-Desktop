@@ -13,7 +13,7 @@
             <RowDefinition Height="319*"/>
             <RowDefinition Height="53*"/>
         </Grid.RowDefinitions>
-        <TextBlock HorizontalAlignment="Center" Margin="94,8" TextWrapping="Wrap" Text="Sprints" VerticalAlignment="Center" Width="272" TextAlignment="Center" Height="22" Grid.Row="0"/>
+        <TextBlock HorizontalAlignment="Center" Margin="94,8" TextWrapping="Wrap" Text="Sprints" FontSize="18" VerticalAlignment="Center" Width="272" TextAlignment="Center" Height="22" Grid.Row="0"/>
         <DataGrid x:Name="SprintDataGrid" HorizontalAlignment="Stretch" Margin="8,3,7,3" VerticalAlignment="Stretch"  Grid.Row="1" AutoGenerateColumns="False" ColumnWidth="*">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Visibility="Visible" Binding="{Binding NameWithDate}" IsReadOnly="True"/>

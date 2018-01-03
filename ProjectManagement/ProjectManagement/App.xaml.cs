@@ -21,7 +21,7 @@ namespace ProjectManagement
         private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
             string message;
-            if (string.IsNullOrWhiteSpace(e.Exception.InnerException.Message))
+            if (string.IsNullOrWhiteSpace(e.Exception?.InnerException.Message))
                 message = e.Exception.Message;
             else
                 message = e.Exception.InnerException.Message;
