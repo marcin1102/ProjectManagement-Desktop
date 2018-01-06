@@ -11,7 +11,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="480" Width="462"
         SizeToContent="WidthAndHeight"
-        ResizeMode="CanMinimize" Loaded="Window_Loaded" Icon="Icons/checklist_icon.png">
+        ResizeMode="CanMinimize" Loaded="Window_Loaded" Icon="Icons/checklist_icon.ico">
 
     <Window.Resources>
         <Users:UserRole x:Key="userRole"/>

@@ -550,9 +550,6 @@
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Icons\checklist_icon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Icons\checklist_icon.ico" />
   </ItemGroup>
   <ItemGroup>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectManagement"
         mc:Ignorable="d"
-        Title="Project Management" Height="245" Width="285" KeyDown="Window_KeyDown" Icon="Icons/checklist_icon.png" ResizeMode="CanMinimize">
+        Title="Project Management" Height="245" Width="285" KeyDown="Window_KeyDown" Icon="Icons/checklist_icon.ico" ResizeMode="CanMinimize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="35*"/>

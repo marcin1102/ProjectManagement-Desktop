@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectManagement.Projects"
         mc:Ignorable="d"
-        Title="AssignUserWindow" Height="209" Width="354" ResizeMode="NoResize">
+        Title="AssignUserWindow" Height="209" Width="354" ResizeMode="NoResize" Icon="/ProjectManagement;component/Icons/checklist_icon.ico">
 
     <Grid Loaded="Grid_Loaded">
         <Grid.RowDefinitions>
